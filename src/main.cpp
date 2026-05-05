@@ -103,10 +103,10 @@ void runMotors(float moveDistanceX, float moveDistanceY) {
   while (i < stepsX || i < stepsY) {
     if (i < stepsX) digitalWrite(stepPinX, HIGH);
     if (i < stepsY) digitalWrite(stepPinY, HIGH);
-    delayMicroseconds(200);
+    delayMicroseconds(500);
     digitalWrite(stepPinX, LOW);
     digitalWrite(stepPinY, LOW);
-    delayMicroseconds(200);
+    delayMicroseconds(500);
     i++;
   }
 }
