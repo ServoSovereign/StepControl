@@ -1,6 +1,3 @@
-//Hardware:
-    //Double step motors with a wood plank
-    //Inventor: Khai
 #pragma once
 #include <Arduino.h>
 
