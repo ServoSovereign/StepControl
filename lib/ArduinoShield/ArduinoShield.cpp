@@ -57,23 +57,11 @@ void initDriver(){
   Serial.println("Driver OK");
 }
 
-String getStringSerial(){
-  String received = "";
-  while(Serial.available() == 0)
-    delay(50);
-  while (Serial.available() > 0){
-        char c = Serial.read();
-        if (c == '\n' || c == '\r') break;
-        received += c;
-  }
-  return received;
-}
-
 void getDistance(){
   Serial.println("Input for X (cm): ");
-  targetDistanceX = getStringSerial().toFloat();
+  targetDistanceX = getSerialString().toFloat();
   Serial.println("Input for Y (cm): ");
-  targetDistanceY = getStringSerial().toFloat();
+  targetDistanceY = getSerialString().toFloat();
 }
 
 void convertToSteps(){
@@ -131,9 +119,9 @@ void serialMotorMode(){
 
 void testChannelDriver(){
   Serial.println("Distance of travel (cm): ");
-    uint32  Distance=getStringSerial().toInt();
+    uint32  Distance=getSerialString().toInt();
   Serial.println("Dirrection: 1)Forward/2) Backward");
-    uint8  Dirrection=getStringSerial().toInt();
+    uint8  Dirrection=getSerialString().toInt();
   //Fix channel here
   Dirrection==1?digitalWrite(dirrectionPinY, HIGH):digitalWrite(dirrectionPinY, LOW);
 
