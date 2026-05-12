@@ -34,7 +34,11 @@ void initDriver(){
     attachInterrupt(
         digitalPinToInterrupt(encoderPinA), 
         readEncoder, 
-        RISING);
+        CHANGE);
+    attachInterrupt(
+        digitalPinToInterrupt(encoderPinB),
+        readEncoder,
+        CHANGE);
     
     digitalWrite(enablePin, LOW);
     digitalWrite(directionPin, LOW);
@@ -46,13 +50,8 @@ uint32 getPulses(uint32 Revolutions){
 }
 
 void readEncoder() {
-    bool A = digitalRead(encoderPinA);
-    bool B = digitalRead(encoderPinB);
-
-    if (A == B)
-        encoderCount++;
-    else
-        encoderCount--;
+    bool signalA = digitalRead(encoderPinA);
+    bool signalB = digitalRead(encoderPinB);
 }
 
 void runStepMotor(uint32 numberOfPulses){
