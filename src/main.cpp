@@ -13,10 +13,14 @@ extern volatile int32 encoderCount;
 
 void setup() {
     initDriver();
+    initEncoder();
 }
 
 void loop() {
-    static float last=0;
+    //Getg direction
+    Serial.println("Input Direction: 0 to forward");
+    int8_t DIRECTION=getSerialString().toInt();
+    setDirMotor(DIRECTION);
     //Get revolution
     Serial.println("Input Revolution: ");
     uint16 NUM=getSerialString().toInt();
