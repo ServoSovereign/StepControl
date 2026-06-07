@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "Stew.h"
-#include "MicroStepDriver.h"
+#include "ArduinoShield.h"
 
 typedef uint8_t  uint8;
 typedef uint16_t uint16;
@@ -9,34 +9,28 @@ typedef int8_t  int8;
 typedef int16_t int16;
 typedef int32_t int32;
 
-extern volatile int32 encoderCount;
+static int32 numberOfPulses1=0;
+static int32 numberOfPulses2=0;
+static int32 i=0;
 
 void setup() {
     initDriver();
-    initEncoder();
 }
 
 void loop() {
-    //Getg direction
-    Serial.println("Input Direction: 0 to forward");
-    int8_t DIRECTION=getSerialString().toInt();
-    setDirMotor(DIRECTION);
-    //Get revolution
-    Serial.println("Input Revolution: ");
-    uint16 NUM=getSerialString().toInt();
-    //Convert to pulses
-    uint32 PULSES=getPulses(NUM);
+    Serial.print("Elapsed: ");
+    Serial.println(i);
 
-    noInterrupts();
-    encoderCount = 0;
-    interrupts();
-    
-    //Run with said pulses
-    runStepMotor(PULSES);
-    delay(50);
-    //Encoder
-    printEncoderInfo();
-    //Confirm status
-    Serial.println("Successful\n");
-    delay(1000);
+    testDirectionChannelY();
+    testDirectionChannelZ();
+
+    Serial.println("Get pulses Y: ");
+    numberOfPulses1=getSerialString().toInt();
+    Serial.println("Get pulses Z: ");
+    numberOfPulses2=getSerialString().toInt();
+
+    runMotorChannelY(numberOfPulses1);
+    runMotorChannelZ(numberOfPulses2);
+
+    i++;
 }

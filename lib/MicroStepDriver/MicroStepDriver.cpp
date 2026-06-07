@@ -112,3 +112,8 @@ void printEncoderInfo(){
     Serial.print("  Angle: "); Serial.print(ANGLE, 1); Serial.print("deg");
     Serial.print("  Dir: ");  Serial.println(DIRECTION);
 }
+
+int32_t readCountEncoder(){}
+int32_t readRevEncoder(){}
+int32_t readAngleEncoder(){}
+int32_t readDirEncoder(){}

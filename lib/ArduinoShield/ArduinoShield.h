@@ -17,3 +17,18 @@ void setDirection();
 void runMotors(float moveDistanceX, float moveDistanceY);
 void renewCoord();
 void testChannelDriver();
+
+void runMotorChannelX(int32_t numberOfPulses);
+void runMotorChannelY(int32_t numberOfPulses);
+void runMotorChannelZ(int32_t numberOfPulses);
+void runMotorChannelA(int32_t numberOfPulses);
+
+void setDirectionChannelX(bool Bit);
+void setDirectionChannelY(bool Bit);
+void setDirectionChannelZ(bool Bit);
+void setDirectionChannelA(bool Bit);
+
+void testDirectionChannelX();
+void testDirectionChannelY();
+void testDirectionChannelZ();
+void testDirectionChannelA();
